@@ -5,5 +5,6 @@ int main(){
 
   my_string name("Anders");
 
-  cout << name << endl;
+  cout << name[2] << endl;
+
 }

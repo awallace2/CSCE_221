@@ -10,7 +10,11 @@ class my_string {
 public:
   my_string();
   my_string(char* cstring);
-  const int size(void) { return ptr[index]; }
+  int size() { return sz; }
+  int capacity() { return cap; }
+  bool empty();
+  char at(int i);
+  char operator[](int i);
 
 
 private:
@@ -23,7 +27,6 @@ private:
 
 };
 
-char operator[](int i);
-ostream& operator<<(ostream& os, const my_string& string);
+ostream& operator<<(ostream& os, my_string string);
 
 #endif
