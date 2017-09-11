@@ -7,4 +7,12 @@ int main(){
 
   cout << name[2] << endl;
 
+  name += 'W';
+  name += 'a';
+  name += 'l';
+
+  cout << endl;
+  cout << name << endl;
+  cout << name.size();
+
 }

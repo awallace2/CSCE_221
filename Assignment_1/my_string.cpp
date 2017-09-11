@@ -47,6 +47,27 @@ char my_string::operator[](int i) {
   return *(ptr + i);
 }
 
+// appending a character operator
+my_string& my_string::operator+=(const char input){
+  if(sz == cap){
+    cap = 2 * cap;
+    char* tempPtr = new char[cap];
+    for(int i = 0; i < sz; i++) {
+      tempPtr[i] = ptr[i];
+    }
+    sz = sz + 1;
+    delete[] ptr;
+    ptr = tempPtr;
+    ptr[sz - 1] = input;
+  }
+  else {
+    ptr[sz] = input;
+    sz = sz + 1;
+  }
+
+  return *this;
+}
+
 
 //overloaded output operator
 ostream& operator<<(ostream& os, my_string string){

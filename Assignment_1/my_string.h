@@ -15,12 +15,14 @@ public:
   bool empty();
   char at(int i);
   char operator[](int i);
+  my_string& operator+=(const char a);
 
 
 private:
   char* ptr; //pointer to the dynamic array of type char
   int sz; //number of characters in the string
   int cap; //length in bytes of the allocated memory pointed to by ptr
+
 
 
 
