@@ -9,6 +9,7 @@ using namespace std;
 class my_string {
 public:
   my_string();
+  ~my_string();
   my_string(char* cstring);
   int size() { return sz; }
   int capacity() { return cap; }
@@ -31,5 +32,6 @@ private:
 };
 
 ostream& operator<<(ostream& os, my_string string);
+istream& operator>>(ifstream& is, my_string string);
 
 #endif

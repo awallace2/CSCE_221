@@ -8,6 +8,11 @@ my_string::my_string(){
   int cap = 0;
 }
 
+// destructor
+my_string::~my_string() {
+  delete[] ptr;
+}
+
 //consructor with cstring input
 my_string::my_string(char* cstring){
     int index = 0;
@@ -33,7 +38,7 @@ bool my_string::empty() {
   }
 }
 
-// at member function with bounds checking
+// at() member function with bounds checking
 char my_string::at(int i){
   if(i >= sz){
     throw out_of_range("Index out of range");
@@ -97,7 +102,7 @@ my_string& my_string::operator+=(my_string& rhs){
 }
 
 
-//overloaded output operator
+// overloaded output operator
 ostream& operator<<(ostream& os, my_string string){
     for(int i = 0; i < string.size(); i++){
       os << string[i];
@@ -105,3 +110,12 @@ ostream& operator<<(ostream& os, my_string string){
 
     return os;
 }
+
+// overloaded input operator
+// istream& operator>>(istream& is, my_string string){
+//   int count = 0;
+//   while(is){
+//     count++;
+//   }
+//
+// }
