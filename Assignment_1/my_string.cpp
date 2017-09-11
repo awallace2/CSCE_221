@@ -11,6 +11,7 @@ my_string::my_string(){
 //consructor with cstring input
 my_string::my_string(char* cstring){
     int index = 0;
+    sz = 0;
     while(cstring[index] != '\0'){
       index += 1;
       sz += 1;
@@ -47,6 +48,7 @@ char my_string::operator[](int i) {
   return *(ptr + i);
 }
 
+
 // appending a character operator
 my_string& my_string::operator+=(const char input){
   if(sz == cap){
@@ -63,6 +65,32 @@ my_string& my_string::operator+=(const char input){
   else {
     ptr[sz] = input;
     sz = sz + 1;
+  }
+
+  return *this;
+}
+
+// appending a string operator
+my_string& my_string::operator+=(my_string& rhs){
+  int i = 0;
+  if(sz + rhs.size() > cap){
+    cap = (2 * cap) + rhs.size();
+    char* tempPtr = new char[cap];
+    for(i = 0; i < sz; i++){
+      tempPtr[i] = ptr[i];
+    }
+    for(i = 0; i < rhs.size(); i++){
+      tempPtr[sz + i] = rhs[i];
+    }
+    delete[] ptr;
+    ptr = tempPtr;
+    sz = sz + rhs.size();
+  }
+  else{
+    for(i = 0; i < rhs.size(); i++){
+      ptr[sz + i] = rhs[i];
+    }
+    sz = sz + rhs.size();
   }
 
   return *this;

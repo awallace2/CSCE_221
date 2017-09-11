@@ -4,12 +4,12 @@
 int main(){
 
   my_string name("Anders");
+  my_string last_name("Wallace");
 
   cout << name[2] << endl;
 
-  name += 'W';
-  name += 'a';
-  name += 'l';
+  name += ' ';
+  name += last_name;
 
   cout << endl;
   cout << name << endl;

@@ -16,6 +16,7 @@ public:
   char at(int i);
   char operator[](int i);
   my_string& operator+=(const char a);
+  my_string& operator+=(my_string& rhs);
 
 
 private:
