@@ -101,6 +101,24 @@ my_string& my_string::operator+=(my_string& rhs){
   return *this;
 }
 
+// assignment operator
+my_string& my_string::operator=(my_string& rhs) { //error in this operator
+  if(&rhs == this){ //check if the strings are equivilent so as not to copy the same thing
+    return *this;
+  }
+
+  delete[] ptr; //delete old data
+  sz = rhs.size();
+  cap = rhs.size();
+  char* tempPtr = new char[rhs.size()];
+  for(int i = 0; i < rhs.size(); i++){
+    tempPtr[i] = rhs[i];
+  }
+  ptr = tempPtr;
+  return *this;
+
+}
+
 
 // overloaded output operator
 ostream& operator<<(ostream& os, my_string string){
@@ -114,8 +132,7 @@ ostream& operator<<(ostream& os, my_string string){
 // overloaded input operator
 // istream& operator>>(istream& is, my_string string){
 //   int count = 0;
-//   while(is){
-//     count++;
+//
 //   }
 //
 // }

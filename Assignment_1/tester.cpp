@@ -5,14 +5,16 @@ int main(){
 
   my_string name("Anders");
   my_string last_name("Wallace");
-
-  cout << name[2] << endl;
+  my_string test("Something");
 
   name += ' ';
   name += last_name;
 
+  test = name;
+
   cout << endl;
   cout << name << endl;
-  cout << name.size();
+  cout << test << endl;
+  cout << test.size();
 
 }
