@@ -171,18 +171,6 @@ ostream& operator<<(ostream& os, my_string string){
 
 // overloaded input operator
 istream& operator>>(istream& is, my_string& str){
-  //  char a;
-  //  int counter = 0;
-  //  cout << "Point a" << endl;
-  //  while(cin.get(a)){
-  //    cout << "point b" << endl;
-  //    if(a != '\n'){
-  //      str += a;
-  //      cout << "point c" << endl;
-  //    }
-  //  }
-
-
   char input[256];
   int index = 0;
   cin.getline(input, 256, '\n');
