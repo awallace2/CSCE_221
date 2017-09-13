@@ -28,6 +28,23 @@ my_string::my_string(char* cstring){
     cap = sz;
 }
 
+// constructor with size n as an argument
+my_string::my_string(int n){
+	sz = 0;
+	cap = n;
+	ptr = new char[cap];
+}
+
+// copy constructor
+my_string::my_string(my_string& input_string){
+	ptr = new char[input_string.size()];
+	for(int i = 0; i < input_string.size(); i++){
+		ptr[i] = input_string[i];
+	}
+	sz = input_string.size();
+	cap = sz;
+}
+
 // empty check
 bool my_string::empty() {
   if(sz == 0){
@@ -36,6 +53,31 @@ bool my_string::empty() {
   else {
     return false;
   }
+}
+
+// resizes string to accomodate more characters
+void my_string::resize(int size){
+	if(ptr == NULL){
+		sz = 0;
+		cap = size;
+		ptr = new char[sz];
+		return;
+	}
+	else{
+		delete[] ptr;
+		sz = 0;
+		cap = size;
+		ptr = new char[sz];
+		return;
+	}
+}
+
+// inputs characters to a string
+void my_string::input(char* input, int size){
+	for(int i = 0; i < size; i++){
+		ptr[i] = input[i];
+	}
+	return;
 }
 
 // at() member function with bounds checking
@@ -106,15 +148,13 @@ my_string& my_string::operator=(my_string& rhs) { //error in this operator
   if(&rhs == this){ //check if the strings are equivilent so as not to copy the same thing
     return *this;
   }
-
   delete[] ptr; //delete old data
   sz = rhs.size();
   cap = rhs.size();
-  char* tempPtr = new char[rhs.size()];
+  ptr = new char[rhs.size()];
   for(int i = 0; i < rhs.size(); i++){
-    tempPtr[i] = rhs[i];
+    ptr[i] = rhs[i];
   }
-  ptr = tempPtr;
   return *this;
 
 }
@@ -130,9 +170,10 @@ ostream& operator<<(ostream& os, my_string string){
 }
 
 // overloaded input operator
-// istream& operator>>(istream& is, my_string string){
-//   int count = 0;
-//
-//   }
-//
-// }
+istream& operator>>(istream& is, my_string& string){
+   char* tempVal = new char[256];
+   
+   return is;
+   
+
+ }

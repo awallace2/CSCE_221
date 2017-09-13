@@ -60,8 +60,8 @@ int main()
     // create an auxiliary string v5a and insert it in v5 in places at positions 5 and 14
     my_string v5a("ly");
     cout << "v5.insert(5, \"ly\") and v5.insert(14, \"ly\"): \n";
-    v5.insert(5, v5a);
-    v5.insert(14, v5a);
+    //v5.insert(5, v5a);
+    //v5.insert(14, v5a);
     // display v5
     cout << "v5 = " << v5 << endl;
     cout << endl;
@@ -79,7 +79,7 @@ int main()
     // append v2
     v7 += v2;
     // insert a whitespace
-    v7.insert(v6.size(), my_string(" "));
+    //v7.insert(v6.size(), my_string(" "));
     cout << "v6 + \" \" + v2 = " << v7 << endl;
       
     // create v8 and initialize it with v6
