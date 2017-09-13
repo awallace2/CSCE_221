@@ -22,7 +22,7 @@ public:
   char operator[](int i);
   my_string& operator+=(const char a);
   my_string& operator+=(my_string& rhs);
-  my_string& operator=(my_string& rhs); //error in this operator
+  my_string& operator=(my_string& rhs);
 
 
 private:
@@ -37,6 +37,6 @@ private:
 };
 
 ostream& operator<<(ostream& os, my_string string);
-istream& operator>>(istream& is, my_string& string);
+istream& operator>>(istream& is, my_string& str);
 
 #endif

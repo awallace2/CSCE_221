@@ -3,9 +3,9 @@
 
 // constructor with no input
 my_string::my_string(){
-  char* ptr = nullptr;
-  int sz = 0;
-  int cap = 0;
+  ptr = nullptr;
+  sz = 0;
+  cap = 0;
 }
 
 // destructor
@@ -144,7 +144,7 @@ my_string& my_string::operator+=(my_string& rhs){
 }
 
 // assignment operator
-my_string& my_string::operator=(my_string& rhs) { //error in this operator
+my_string& my_string::operator=(my_string& rhs) {
   if(&rhs == this){ //check if the strings are equivilent so as not to copy the same thing
     return *this;
   }
@@ -170,10 +170,27 @@ ostream& operator<<(ostream& os, my_string string){
 }
 
 // overloaded input operator
-istream& operator>>(istream& is, my_string& string){
-   char* tempVal = new char[256];
-   
+istream& operator>>(istream& is, my_string& str){
+  //  char a;
+  //  int counter = 0;
+  //  cout << "Point a" << endl;
+  //  while(cin.get(a)){
+  //    cout << "point b" << endl;
+  //    if(a != '\n'){
+  //      str += a;
+  //      cout << "point c" << endl;
+  //    }
+  //  }
+
+
+  char input[256];
+  int index = 0;
+  cin.getline(input, 256, '\n');
+  while(input[index] != '\0'){
+    str += input[index];
+    index++;
+  }
    return is;
-   
+
 
  }
