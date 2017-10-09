@@ -62,7 +62,7 @@ struct EmptyDLinkedListException : std::range_error {
 
 // copy constructor
 template <typename T>
-DoublyLinkedList<T>::DoublyLinkedList(const DoublyLinkedList& dll)
+DoublyLinkedList<T>::DoublyLinkedList(const DoublyLinkedList<T>& dll)
 {
   // Initialize the list
   header.next = &trailer; trailer.prev = &header;
@@ -78,7 +78,7 @@ DoublyLinkedList<T>::DoublyLinkedList(const DoublyLinkedList& dll)
 
 // assignment operator
 template <typename T>
-DoublyLinkedList<T>& DoublyLinkedList<T>::operator=(const DoublyLinkedList& dll)
+DoublyLinkedList<T>& DoublyLinkedList<T>::operator=(const DoublyLinkedList<T>& dll)
 {
   // Delete the whole list
   if(!isEmpty()){ // if it has nodes, delete them

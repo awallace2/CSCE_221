@@ -62,8 +62,20 @@ int main () {
 
   // more testing...
   // add tests for insertAfter, insertBefore
+  dll2.insertAfter(*(dll2.getFirst()), "hello");
+  cout << "Insert after test: " << dll2 << endl;
+  
+  dll2.insertBefore(*(dll2.getFirst()), "goodbye");
+  cout << "Insert before test: " << dll2 << endl;
+  
   // add tests for removeAfter, removeBefore
+  dll2.removeAfter(*(dll2.getFirst()));
+  cout << "Remove after test: " << dll2 << endl;
+  
+  //dll2.removeBefore(*(dll2.getBefore(dll2.getAfterLast()))); // remove before last element
+  //cout << "Remove before test: " << dll2 << endl;
   // add tests for DoublyLinkedListLength
+  cout << "List length test: " << DoublyLinkedListLength(dll2) << endl; // should be 21
   
   return 0;
 }
