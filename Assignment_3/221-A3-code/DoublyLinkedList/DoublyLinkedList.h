@@ -33,13 +33,13 @@ public:
   int removeFirst(); // remove the first node
   void insertLast(int newobj); // insert to the last of the list
   int removeLast(); // remove the last node
-  void insertAfter(const DListNode &p, int newobj);
-  void insertBefore(const DListNode &p, int newobj);
-  int removeAfter(const DListNode &p);
-  int removeBefore(const DListNode &p);
+  void insertAfter(DListNode &p, int newobj);
+  void insertBefore(DListNode &p, int newobj);
+  int removeAfter(DListNode &p);
+  int removeBefore(DListNode &p);
 };
 
 // output operator
 ostream& operator<<(ostream& out, const DoublyLinkedList& dll);
 // return the list length
-int DoublyLinkedListLength(DoublyLinkedList& dll);
+int DoublyLinkedListLength(const DoublyLinkedList& dll);
