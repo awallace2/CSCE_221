@@ -8,23 +8,24 @@
 class MinQueue{
 	
 private:
-	DoublyLinkedList dll;
+	
 	
 public:
-	MinQueue();
+	DoublyLinkedList dll;
+	MinQueue() : dll() {}
 	~MinQueue() { dll.removeAll(); }
-	MinQueue(const MinQueue& queue) : dll(queue.dll) { }
-	MinQueue& operator=(const MinQueue&	queue);
 	int size() { return DoublyLinkedListLength(dll); }
 	int min();
 	bool isEmpty() const { return dll.isEmpty(); }
 	void enqueue(int newObj) { dll.insertLast(newObj); }
-	int dequeue();
+	int dequeue() { return dll.removeFirst(); }
+	
 	
 	
 };
 
-ostream& operator<<(ostream& out, const MinQueue& queue);
+ostream& operator<<(ostream& out, MinQueue queue);
+
 
 
 #endif

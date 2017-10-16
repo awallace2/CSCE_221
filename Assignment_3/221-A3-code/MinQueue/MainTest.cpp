@@ -13,8 +13,16 @@ int main() {
 		one.enqueue(i);
 	}
 	
+	one.enqueue(-1);
+	
+	int min = one.min();
+	
 	// print elements of queue
 	cout << one << endl;
+	
+	cout << "Min is: " << min << endl;
+	
+	cout << "Size is: " << one.size() << endl;
 	
 	
 }
