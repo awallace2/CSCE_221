@@ -37,6 +37,7 @@ public:
   void insertBefore(DListNode &p, int newobj);
   int removeAfter(DListNode &p);
   int removeBefore(DListNode &p);
+  void removeAll();
 };
 
 // output operator

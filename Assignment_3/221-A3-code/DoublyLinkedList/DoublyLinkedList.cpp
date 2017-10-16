@@ -98,14 +98,7 @@ int DoublyLinkedList::removeLast()
 // destructor
 DoublyLinkedList::~DoublyLinkedList()
 {
-	DListNode *prev_node, *node = header.next;
-	while(node != &trailer){
-		prev_node = node;
-		node = node->next;
-		delete prev_node;
-	}
-	header.next = &trailer;
-	trailer.prev = &header;
+	removeAll();
 }
 
 // return the first object
@@ -200,6 +193,17 @@ int DoublyLinkedListLength(const DoublyLinkedList& dll)
 		current = current->next;
 	}
 	return count;
+}
+
+void DoublyLinkedList::removeAll(){
+	DListNode *prev_node, *node = header.next;
+	while(node != &trailer){
+		prev_node = node;
+		node = node->next;
+		delete prev_node;
+	}
+	header.next = &trailer;
+	trailer.prev = &header;
 }
 
 // output operator
