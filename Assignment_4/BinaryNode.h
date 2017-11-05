@@ -1,10 +1,11 @@
 #include <iostream>
 
+
 using namespace std;
 
 class BinaryNode {
 private:
-	friend class BinaryTree;
+	friend class BinarySearchTree;
 	int key;
 	int searchCost;
 	BinaryNode *left, *right;
@@ -15,9 +16,9 @@ public:
 	BinaryNode *getLeft() { return left; } // return left pointer
 	BinaryNode *getRight() { return right; } // return right pointer
 	int getKey() { return key; } // return key value
-	int getSearchCost() { return searchCost }
-	//int size(BinaryNode *t); // <------- Don't forget to finish these
-	//int height(BinaryNode *t);
+	int getSearchCost() { return searchCost; }
+	int size(BinaryNode *t); 
+	int height(BinaryNode *t);
 	
 };
 
