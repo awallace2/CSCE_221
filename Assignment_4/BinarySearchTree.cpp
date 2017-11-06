@@ -12,18 +12,29 @@ void BinarySearchTree::deleteTree(BinaryNode *root){
 		deleteTree(root->right);
 	}
 	delete root;
+	totalNode = 0;
 	
 }
 
-void BinarySearchTree::insertNode(int k){
-	Binary *node = root;
-	if(root == NULL){
-		root = new BinaryNode(k);
+void BinarySearchTree::insert(int k, BinaryNode *t, int& cost){
+	cost++
+	if(t == NULL){
+		t = new BinaryNode(k);
+		t->searchCost = cost;
+		totalNode++;
+		cout << "Key = " << k << "  Search Cost = " << cost << endl;
+	}
+	else if(k < t->key){
+		t->left = insert(k, t->left, cost);
+	}
+	else if(k > t->key){
+		t->right = insert(k, t->right, cost);
 	}
 	else{
-		insertRecursive(root, k, 1);
+		throw runtime_error("ERROR: Node already exists")
 	}
 	
+	return t;
 }
 
 BinaryNode *BinarySearchTree::findMin(BinaryNode *t){
@@ -53,27 +64,7 @@ BinaryNode *BinarySearchTree::removeMin(BinaryNode *t){
 	return t;
 }	
 
-void insertRecursive(BinaryNode *node, int k, int comparison){
-	comparisons++;
-	if(k < node->getKey()){
-		if(node->left == NULL){
-			node->left = new BinaryNode(k, comparisons);
-		}
-		else{
-			insertRecursive(node->left, k, comparisons);
-		}
-	else{
-		if(node->right == NULL){
-			node->right = new BinaryNode(k, comparisons);
-		}
-		else{
-			insertRecursive(node->right, k, comparisons);
-		}
-	}
-	
-}
-
-BinaryNode *BinarySearchTree::removeNode(int k, BinaryNode *t){
+BinaryNode *BinarySearchTree::removeNode(int k, BinaryNode *t){ // <------ UPDATE
 	if(t == NULL){
 		throw runtime_error("ERROR: Tree is empty");
 	}
