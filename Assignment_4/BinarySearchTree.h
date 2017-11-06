@@ -1,4 +1,6 @@
 #include "BinaryNode.h"
+#include <iostream>
+#include <math.h>
 
 
 class BinarySearchTree {

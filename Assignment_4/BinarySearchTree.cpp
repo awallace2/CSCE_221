@@ -1,5 +1,6 @@
 #include "BinarySearchTree.h"
 #include <stdexcept>
+#include <queue>
 
 
 void BinarySearchTree::deleteTree(BinaryNode *root){
@@ -64,7 +65,7 @@ BinaryNode *BinarySearchTree::removeMin(BinaryNode *t){
 	return t;
 }	
 
-BinaryNode *BinarySearchTree::removeNode(int k, BinaryNode *t){ // <------ UPDATE
+BinaryNode *BinarySearchTree::removeNode(int k, BinaryNode *t){
 	if(t == NULL){
 		throw runtime_error("ERROR: Tree is empty");
 	}
@@ -77,13 +78,26 @@ BinaryNode *BinarySearchTree::removeNode(int k, BinaryNode *t){ // <------ UPDAT
 	else if((t->left != NULL) && (r->right != NULL)){
 		t->key = findMin(t->right)->key;
 		t->right = removeMin(t->right);
+		totalNode--;
+		resetSearchCost(root, 1);
 	}
 	else{
+		totalNode--;
 		BinaryNode *node = t;
 		t = (t->left != NULL) ? t->left : t->right;
 		delete node;
+		resetSearchCost(root, 1);
 	}
 	
 	return t;
 	
+}
+
+void BinarySearchTree::resetSearchCost(BinaryNode *t, int& i){
+	if(t == NULL){
+		return;
+	}
+	resetSearchCost(t->left, i + 1);
+	resetSearchCost(t->right, i + 1);
+	t->searchCost = i;
 }
