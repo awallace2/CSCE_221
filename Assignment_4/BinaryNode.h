@@ -8,11 +8,12 @@ private:
 	friend class BinarySearchTree;
 	int key;
 	int searchCost;
-	BinaryNode *left, *right;
+	
 	
 public:
-	BinaryNode(int newKey = 0, int newSearchCost = 0, BinaryNode *lt = NULL, BinaryNode *rt = NULL)
-	: key(newKey), left(lt), right(rt) {} // constructor
+	BinaryNode *left, *right;
+	BinaryNode(int k = 0, int search = 1, BinaryNode *lt = NULL, BinaryNode *rt = NULL)
+	: key(k), searchCost(search), left(lt), right(rt) {} // constructor
 	BinaryNode *getLeft() { return left; } // return left pointer
 	BinaryNode *getRight() { return right; } // return right pointer
 	int getKey() { return key; } // return key value
