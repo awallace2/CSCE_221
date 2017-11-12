@@ -12,13 +12,13 @@ private:
 	BinaryNode* removeNode(int k, BinaryNode *t); // remove a designated node
 	BinaryNode* insert(int k, BinaryNode *t, int& cost);
 	void deleteTree(BinaryNode *root);
-	void resetCost(BinaryNode *t); // reset after deleting a node
+	void resetSearchCost(BinaryNode *t, int k); // reset after deleting a node
 	void inOrderTraversal(BinaryNode *t, int& totalCost); // different ways of outputting tree
 	void preOrderTraversal(BinaryNode *t, int& totalCost);
 	void postOrderTraversal(BinaryNode *t, int& totalCost);
 	
 public:
-	BinarySearchTree() { root = NULL; totalNode = 0 } // default constructor
+	BinarySearchTree() { root = NULL; totalNode = 0; } // default constructor
 	~BinarySearchTree() { deleteTree(root); root = NULL; totalNode = 0; } // destructor
 	BinaryNode *getRoot() const { return root; }
 	bool isEmpty() { return root == NULL; } // check if its empty
