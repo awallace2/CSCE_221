@@ -15,7 +15,7 @@ int main(){
 	string secondLine;
 	string thirdLine;
 	
-	string filename = "DataSetSize10.csv";
+	string filename = "DataSetSize100.csv";
 	
 	//cout << "Please enter the name of the file for reading in: ";
 	//cin >> filename;
@@ -39,12 +39,8 @@ int main(){
 			pq.insertItem(jobID, priority, length);
 		}
 	
-	//cout << endl;
-	//cout << "First Priority Job is: " << pq.minKey() << endl;
-	//cout << "First priority removed" << endl;
-	//pq.removeMin();
-	//cout << "Next priority job: " << pq.minKey() << endl;
-	pq.runJobs();
+	// outputs to file with similar name
+	pq.runJobs(filename);
 	
 	return 0;
 	

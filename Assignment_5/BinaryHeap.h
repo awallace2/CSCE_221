@@ -1,6 +1,8 @@
 #include "RuntimeException.h"
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <string>
 
 
 template<typename ElemType>
@@ -169,15 +171,19 @@ class PriorityQueue {
 			if(T.isEmpty()) RuntimeException("Empty Queue");
 			T.deleteMin();
 		}
-		void runJobs(){
+		void runJobs(string filename){
+			string newName = "output";
+			newName = newName + filename;
+			ofstream ofs(newName); // create output file
 			int time = 0;
+		
 			while(!isEmpty()){
 				time = minLength();
 				for(int i = time; i > 0; i--){
-					cout << "Job " << minKey() << " with length " << i << " and priority " << minElement() << endl;
+					ofs << "Job " << minKey() << " with length " << i << " and priority " << minElement() << endl;
 				}
 				removeMin();
 			}
-			cout << "No more jobs waiting" << endl;
+				ofs << "No more jobs waiting" << endl;
 		}
 };
