@@ -25,32 +25,26 @@ int main(){
 	ifstream inFile(filename);
 	
 	// This is to get rid of the first 3 words which we don't need
-	inFile >> firstLine;
-	inFile >> firstLine;
-	inFile >> firstLine;
+	getline(inFile, firstLine);
 	
-	// Read in all the data
-	//if(inFile.is_open()){
-		while(inFile.good()){
-			getline(inFile, firstLine, ',');
+		// read in all the data and add it to the priority queue
+		while(getline(inFile, firstLine, ',')){
 			getline(inFile, secondLine, ',');
-			getline(inFile, thirdLine, ',');
+			getline(inFile, thirdLine);
 			
 			jobID = stoi(firstLine);
 			length = stoi(secondLine);
 			priority = stoi(thirdLine);
 			
-			cout << "Job ID: " << jobID << " ";
-			cout << "Job length: " << length << " ";
-			cout << "Job priority: " << priority << endl;
 			pq.insertItem(jobID, priority, length);
 		}
-	//}
 	
-	cout << endl;
-	cout << "First Priority Job is: " << pq.minKey() << endl;
-	cout << "First priority removed" << endl;
-	cout << "Next priority job: " << pq.minKey() << endl;
+	//cout << endl;
+	//cout << "First Priority Job is: " << pq.minKey() << endl;
+	//cout << "First priority removed" << endl;
+	//pq.removeMin();
+	//cout << "Next priority job: " << pq.minKey() << endl;
+	pq.runJobs();
 	
 	return 0;
 	

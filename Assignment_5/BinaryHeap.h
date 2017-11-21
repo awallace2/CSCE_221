@@ -159,9 +159,25 @@ class PriorityQueue {
 			if(T.isEmpty()) RuntimeException("Empty Queue");
 			return T.findMin().getKey();
 		}
+		const int minLength()
+		{
+			if(T.isEmpty()) RuntimeException("Empty Queue");
+			return T.findMin().getLength();
+		}
 		void removeMin()
 		{
 			if(T.isEmpty()) RuntimeException("Empty Queue");
 			T.deleteMin();
+		}
+		void runJobs(){
+			int time = 0;
+			while(!isEmpty()){
+				time = minLength();
+				for(int i = time; i > 0; i--){
+					cout << "Job " << minKey() << " with length " << i << " and priority " << minElement() << endl;
+				}
+				removeMin();
+			}
+			cout << "No more jobs waiting" << endl;
 		}
 };
