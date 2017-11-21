@@ -7,11 +7,12 @@ template<typename ElemType>
 class Item {
 	private:
 		int key; // JobID
-		ElemType elem;
-		int priority;
+		ElemType elem; // priority
+		int length; // length
 	public:
 		Item(const int k = 0, const ElemType& e = ElemType()) : key(k), elem(e) { }
 		const int getKey() const { return key; }
+		const int getLength() const { return length; }
 		const ElemType& getElem() const { return elem; }
 		void setKey(const int k) { key = k; }
 		void setElem(const ElemType& e) { elem = e; }
@@ -20,7 +21,7 @@ class Item {
 template<typename ElemType>
 class PQComp {
 	public:
-		int operator() (const Item<ElemType>& e1, const Item<ElemType>& e2) { return e1.getKey() - e2.getKey(); }
+		int operator() (const Item<ElemType>& e1, const Item<ElemType>& e2) { return e1.getElem() - e2.getElem(); }
 };
 	
 
@@ -78,9 +79,21 @@ class BinaryHeap {
 			checkSize( );
 			//walk up (establish heap order now)
 			int hole = curSize++;
-			for ( ; hole > 0 && comp(array[(hole-1)/2], x) > 0; hole = (hole-1)/2)
+			for ( ; hole > 0 && comp(array[(hole-1)/2], x) > 0; hole = (hole-1)/2){
 				array[hole] = array[(hole-1)/2];
+			}
 			array[hole] = x;
+			
+			// add this to account for jobs with same priority
+			while(comp(array[(hole - 1) / 2], array[hole]) == 0 && (hole != 0)){
+				if(array[hole].getElem() == array[(hole-1)/2].getElem()){
+					if(x.getKey() < array[(hole - 1) / 2].getKey()){
+						array[hole] = array[(hole - 1) / 2];
+						array[(hole - 1) / 2] = x;
+					}
+				}
+				hole = (hole - 1) / 2;
+			}
 		}
 		
 				
@@ -92,50 +105,36 @@ class BinaryHeap {
 		void walkDown(int hole){
 			int child;
 			ElemType key = array[hole];
+			
+			//cout << "Left child job: " << array[2*hole + 1].getKey() << endl;
+			//cout << "Right child job: " << array[2*hole + 2].getKey() << endl;
+			//cout << "Current size of queue: " << curSize << endl;
 			for ( ; 2*hole+1 < curSize; hole = child) {
 				child = 2*hole+1;
+				//cout << "value of child: " << child << endl;
 				if (child != curSize-1 && comp(array[child], array[child+1]) > 0){
 					child++; // right child = 2*hole+2
 				}
+				else if(comp(array[child], array[child + 1]) == 0){
+					//cout << "im here" << endl;
+					if(array[child].getKey() > array[child + 1].getKey()){
+						child++;
+						//cout << "here too" << endl;
+					}
+				}
 				if (comp(key, array[child]) > 0) {
 					array[hole]=array[child];
-				}else break;
+				}
+				else if(comp(key, array[child]) == 0){
+					if(key.getKey() > array[child].getKey()){
+						array[hole] = array[child];
+					}
+				}
+				else break;
 			}
 			array[hole] = key;
 		}
 		
-		
-		void walkUp(int hole){
-			int decomp = 0;
-			int parent, nei;
-			ElemType x = array[hole];
-			for( ; hole > 0; hole = parent){
-				++decomp;
-				parent = (hole-1)/2;
-				if(++decomp && hole%2 ==0){
-					nei = hole-1;
-					++decomp;
-					if( comp(array[hole],array[nei])<0){
-						ElemType temp = array[nei];
-						array[nei] = array[hole];
-						array[hole] = temp;
-					}
-				}else if (hole%2 ==1) {
-					nei = hole+1;
-					if( comp(array[nei], array[hole])<0){
-						ElemType temp = array[nei];
-						array[nei] = array[hole];
-						array[hole] = temp;
-					}
-				}
-				if (++decomp && comp(x, array[parent])<0){
-					array[hole] = array[parent];
-					
-				}else break;
-			}
-			array[hole] = x;
-		
-		}
 };
 
 template<typename ElemType>
