@@ -15,7 +15,7 @@ int main(){
 	string secondLine;
 	string thirdLine;
 	
-	string filename = "DataSetSize100.csv";
+	string filename = "DataSetSize1000000.csv";
 	
 	//cout << "Please enter the name of the file for reading in: ";
 	//cin >> filename;
