@@ -10,7 +10,7 @@ class Item {
 		ElemType elem; // priority
 		int length; // length
 	public:
-		Item(const int k = 0, const ElemType& e = ElemType()) : key(k), elem(e) { }
+		Item(const int k = 0, const ElemType& e = ElemType(), const int l = 0) : key(k), elem(e), length(l) { }
 		const int getKey() const { return key; }
 		const int getLength() const { return length; }
 		const ElemType& getElem() const { return elem; }
@@ -148,7 +148,7 @@ class PriorityQueue {
 	public:
 		PriorityQueue(int size = DEF_SIZE) : T(size) { }
 		bool isEmpty() const { return T.isEmpty(); }
-		void insertItem(const int k, const ElemType& e) { T.insert(_Item(k, e)); }
+		void insertItem(const int k, const ElemType& e, const int l) { T.insert(_Item(k, e, l)); }
 		const ElemType& minElement()
 		{
 			if(T.isEmpty()) RuntimeException("Empty Queue");
