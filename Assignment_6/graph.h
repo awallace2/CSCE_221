@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <string>
+#include <cstring>
 
 using namespace std;
 
@@ -9,7 +11,7 @@ using namespace std;
 
 class Graph{
 private:
-	vector<vector <int>> adMat; // matrix of the graph
+	vector<vector <int> > adMat; // matrix of the graph
 	vector <int> points; // holds valid starting points for drawing path
 	list<int> *adjList;
 	bool isCircuit; // if its an euler circuit
@@ -30,7 +32,11 @@ public:
 	//void findEulerPath();
 	//void findEulerCircuit();
 	
-	void addEdge(int start, int end) { adjList[start].push_back(end); adjList[end].push_back(start); }
+	void addEdge(int start, int end)
+	{ 
+		adjList[start].push_back(end); 
+		adjList[end].push_back(start);
+	}
 	void removeEdge(int start, int end);
 	void printEulerPath();
 	void printEulerPathStart(int start);

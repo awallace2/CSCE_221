@@ -2,14 +2,14 @@
 #include <fstream>
 #include <algorithm>
 #include <list>
-#include <string.h>
+#include <string>
 #include <iostream>
 
 using namespace std;
 
 Graph::Graph(string filename){
 	
-	ifstream inFile(filename);
+	ifstream inFile(filename.c_str());
 	
 	int vertices = 0;
 	int edges = 0;
@@ -55,7 +55,7 @@ Graph::Graph(string filename){
 		
 		add(start, end);
 		//cout << start << " " << end << endl;
-		addEdge(start, end);
+		addEdge(start - 1, end - 1);
 		
 		
 	}
@@ -143,7 +143,7 @@ string Graph::status(){
 void Graph::findPath(){
 	
 	if((isCircuit == true) && (isPath == false)){
-		printEulerPathStart(1); // can start here since we know its already valid starting place
+		printEulerPathStart(0); // can start here since we know its already valid starting place
 	}
 	else if((isCircuit == false) && (isPath == true)){
 		printEulerPath(); // find odd vertex and then print
@@ -213,7 +213,7 @@ void Graph::printEulerPathStart(int start){
 		
 		if((end != -1) && (isNextEdgeValid(start, end)))
 		{
-			cout << start << "->" << end << " "; 
+			cout << start + 1 << "->" << end + 1 << " "; 
 			removeEdge(start, end);
 			printEulerPathStart(end);
 		}

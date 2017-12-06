@@ -5,9 +5,9 @@
 
 using namespace std;
 
-int main(){
+int main(int argc, char *argv[]){
 	
-	string filename = "graph3.data";
+	string filename = argv[1];
 	
 	Graph k(filename);
 	
