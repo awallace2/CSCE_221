@@ -23,7 +23,7 @@ int main(){
 	cout << endl;
 	
 	// Here we will read in the data to the PriorityQueue
-	ifstream inFile(filename);
+	ifstream inFile(filename.c_str());
 	
 	// This is to get rid of the first 3 words which we don't need
 	getline(inFile, firstLine);
